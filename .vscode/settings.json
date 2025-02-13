@@ -1,0 +1,27 @@
+{
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "javascript.format.semicolons": "remove",
+    "typescript.format.semicolons": "remove",
+    "[typescript]": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+    },
+    "[typescriptreact]": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+    },
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+    },
+    "prettier.semi": false,
+    "prettier.tabWidth": 2,
+    "prettier.useTabs": true,
+    "prettier.trailingComma": "all",
+    "prettier.endOfLine": "lf",
+    "prettier.printWidth": 120,
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true
+}
