@@ -10,17 +10,18 @@ declare global {
 	}
 }
 
+export async function initPreline() {
+	if (typeof window !== 'undefined') {
+		await import('preline/preline')
+		window.HSStaticMethods.autoInit()
+	}
+}
+
 export default function PrelineScript() {
 	const path = usePathname()
 
 	useEffect(() => {
-		const loadPreline = async () => {
-			await import('preline/preline')
-
-			window.HSStaticMethods.autoInit()
-		}
-
-		loadPreline()
+		initPreline()
 	}, [path])
 
 	return null

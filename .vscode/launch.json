@@ -5,26 +5,22 @@
             "name": "Next.js: debug server-side",
             "type": "node-terminal",
             "request": "launch",
-            "command": "npm run dev"
+            "command": "npm run dev",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "/turbopack/[project]/*": "${webRoot}/*"
+            }
         },
         {
             "name": "Next.js: debug client-side",
-            "type": "chrome",
-            "request": "launch",
-            "url": "http://localhost:3333"
-        },
-        {
-            "name": "Next.js: debug client-side (Firefox)",
-            "type": "firefox",
+            "type": "msedge",
             "request": "launch",
             "url": "http://localhost:3333",
-            "reAttach": true,
-            "pathMappings": [
-                {
-                    "url": "webpack://_N_E",
-                    "path": "${workspaceFolder}"
-                }
-            ]
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "/turbopack/[project]/*": "${webRoot}/*"
+            }
         },
         {
             "name": "Next.js: debug full stack",

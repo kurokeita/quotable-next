@@ -1,4 +1,6 @@
-export default {
-	quotableApiUrl: process.env.NEXT_PUBLIC_QUOTABLE_API_URL,
-	quotableApiKey: process.env.NEXT_PUBLIC_QUOTABLE_API_KEY,
+const config = {
+	quotableApiUrl: process.env.QUOTABLE_API_URL,
+	quotableApiKey: process.env.QUOTABLE_API_KEY,
 }
+
+export default config

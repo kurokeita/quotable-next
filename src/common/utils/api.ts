@@ -1,4 +1,5 @@
 import { Quote } from '@/common/types/quote_types'
+import { RandomQuoteRequest } from '@/common/types/request_types'
 import config from '@/config'
 
 export async function healthCheck(): Promise<boolean> {
@@ -8,14 +9,23 @@ export async function healthCheck(): Promise<boolean> {
 	return json.status === 'ok'
 }
 
-export async function randomQuote(author?: string, query?: string): Promise<Quote> {
+export async function randomQuote(request: RandomQuoteRequest): Promise<Quote> {
 	const url = new URL(`${config.quotableApiUrl}/quotes/random`)
+	const { author, query } = request
 
-	if (author) url.searchParams.append('author', author)
-	if (query) url.searchParams.append('query', query)
+	if (author) {
+		url.searchParams.append('author', author)
+	}
+	if (query) {
+		url.searchParams.append('query', query)
+	}
 
 	const response = await fetch(url)
 	const json = await response.json()
+
+	if (!json.quote) {
+		throw new Error('Failed to fetch quote')
+	}
 
 	return json.quote as Quote
 }
