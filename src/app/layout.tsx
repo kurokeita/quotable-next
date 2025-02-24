@@ -1,7 +1,6 @@
-import PrelineScript from '@/app/_components/preline_script'
+import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { ToastContainer } from 'react-toastify'
 import './globals.css'
 
 const geistSans = Geist({
@@ -27,13 +26,11 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[url('/assets/background.jpg')] bg-no-repeat bg-cover bg-center bg-blend-color-dodge`}
+				className={`${geistSans.variable} ${geistMono.variable} bg-[url(/assets/background.jpg)] bg-cover bg-center bg-fixed bg-no-repeat bg-black/70 bg-blend-hard-light`}
 			>
 				{children}
-				<PrelineScript />
-				<ToastContainer />
+				<Toaster position='top-right' closeButton richColors theme='light' />
 			</body>
-			<PrelineScript />
 		</html>
 	)
 }
