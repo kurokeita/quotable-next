@@ -1,6 +1,7 @@
 'use client'
 
 import { Quote } from '@/common/types/quote_types'
+import { randomQuote } from '@/common/utils/api'
 import { errorToast } from '@/common/utils/notify'
 import { AccordionContent, AccordionTrigger } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
@@ -11,23 +12,19 @@ import { RefreshCw } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 export default function QuoteCard() {
-	const [quote, setQuote] = useState<Quote>()
+	const [quote, setQuote] = useState<Quote | undefined>(undefined)
 	const [isBioShown, setIsBioShown] = useState(false)
 	const [authorAccordion, setAuthorAccordion] = useState<string>('')
 
 	const fetchQuote = async function () {
-		const res = await fetch('/api/quotes/random')
-
-		if (!res.ok) {
+		try {
+			const res = await randomQuote({})
+			setAuthorAccordion('')
+			setQuote(res)
+		} catch (e) {
 			errorToast('Failed to fetch quote')
 			setQuote(undefined)
-
-			return
 		}
-
-		const data: Quote = await res.json()
-		setAuthorAccordion('')
-		setQuote(data)
 	}
 
 	const toggleBio = () => {
@@ -40,7 +37,7 @@ export default function QuoteCard() {
 
 	if (!quote) {
 		return (
-			<Card className='bg-dark/80 backdrop-blur-sm w-full sm:w-[640px] border-transparent'>
+			<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full sm:w-[640px] border-transparent'>
 				<CardContent className='p-4 md:p-7 backdrop-blur-sm'>
 					<Skeleton className='w-full h-[20px] rounded-full' />
 				</CardContent>
