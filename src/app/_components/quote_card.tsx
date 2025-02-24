@@ -21,7 +21,7 @@ export default function QuoteCard() {
 			const res = await randomQuote({})
 			setAuthorAccordion('')
 			setQuote(res)
-		} catch (e) {
+		} catch {
 			errorToast('Failed to fetch quote')
 			setQuote(undefined)
 		}
