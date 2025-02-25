@@ -4,9 +4,9 @@ import { Quote } from '@/common/types/quote_types'
 import { randomQuote } from '@/common/utils/api'
 import { errorToast } from '@/common/utils/notify'
 import { AccordionContent, AccordionTrigger } from '@/components/ui/accordion'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Accordion, AccordionItem } from '@radix-ui/react-accordion'
 import { RefreshCw } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -54,9 +54,11 @@ export default function QuoteCard() {
 	}
 
 	return (
-		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full sm:w-[640px] border-transparent text-black'>
-			<CardHeader>
-				<p>{quote?.content}</p>
+		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full border-transparent text-black'>
+			<CardHeader className='justify-center'>
+				<div className='w-full'>
+					<p className='text-center'>{quote?.content}</p>
+				</div>
 			</CardHeader>
 			<CardFooter className='pb-0'>
 				<Accordion
@@ -68,12 +70,19 @@ export default function QuoteCard() {
 				>
 					<AccordionItem value='author-name'>
 						<div className='flex w-full justify-between'>
-							<Button
-								className='bg-transparent shadow-none hover:bg-transparent [&:hover>svg]:animate-spin'
-								onClick={fetchQuote}
-							>
-								<RefreshCw />
-							</Button>
+							<TooltipProvider delayDuration={300}>
+								<Tooltip>
+									<TooltipTrigger
+										className='bg-transparent shadow-none hover:bg-transparent [&:hover>svg]:animate-spin'
+										onClick={fetchQuote}
+									>
+										<RefreshCw size={20} />
+									</TooltipTrigger>
+									<TooltipContent>
+										<p>Fetch new quote</p>
+									</TooltipContent>
+								</Tooltip>
+							</TooltipProvider>
 							<AccordionTrigger className='justify-end [&>svg]:hidden'>{quote.author.name}</AccordionTrigger>
 						</div>
 						<AccordionContent className='pb-0'>
