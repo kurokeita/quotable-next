@@ -67,6 +67,15 @@ export default function QuoteCard() {
 	if (!quote) {
 		return (
 			<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full sm:w-[640px] border-transparent text-black'>
+				<CardHeader className='justify-center flex flex-col gap-4'>
+					{(form.watch('query') || form.watch('author')) && (
+						<div className='w-full'>
+							<p className='text-center'>Filtering by:</p>
+							{form.watch('author') && <p className='text-center'>Author: {form.watch('author')}</p>}
+							{form.watch('query') && <p className='text-center'>Query: {form.watch('query')}</p>}
+						</div>
+					)}
+				</CardHeader>
 				<CardContent className='p-4 md:p-7 backdrop-blur-sm'>
 					<Skeleton className='w-full h-[20px] rounded-full' />
 				</CardContent>
