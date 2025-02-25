@@ -10,9 +10,9 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Accordion, AccordionItem } from '@radix-ui/react-accordion'
 import { RefreshCw } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
-import json from 'react-syntax-highlighter/dist/esm/languages/prism/json'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json'
+import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 SyntaxHighlighter.registerLanguage('json', json)
 
@@ -22,9 +22,9 @@ export default function QuoteCard() {
 	const [authorAccordion, setAuthorAccordion] = useState<string>('')
 
 	const fetchQuote = async function () {
+		setAuthorAccordion('')
 		try {
 			const res = await randomQuote({})
-			setAuthorAccordion('')
 			setQuote(res)
 		} catch {
 			errorToast('Failed to fetch quote')
@@ -54,14 +54,14 @@ export default function QuoteCard() {
 	}
 
 	return (
-		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full sm:w-[640px] border-transparent'>
+		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full sm:w-[640px] border-transparent text-black'>
 			<CardHeader>
 				<p>{quote?.content}</p>
 			</CardHeader>
-			<CardFooter>
+			<CardFooter className='pb-0'>
 				<Accordion
 					type='single'
-					className='w-full'
+					className='w-full pb-0'
 					collapsible
 					value={authorAccordion}
 					onValueChange={setAuthorAccordion}
@@ -72,11 +72,11 @@ export default function QuoteCard() {
 								className='bg-transparent shadow-none hover:bg-transparent [&:hover>svg]:animate-spin'
 								onClick={fetchQuote}
 							>
-								<RefreshCw color='black' />
+								<RefreshCw />
 							</Button>
 							<AccordionTrigger className='justify-end [&>svg]:hidden'>{quote.author.name}</AccordionTrigger>
 						</div>
-						<AccordionContent>
+						<AccordionContent className='pb-0'>
 							<Accordion type='single' collapsible>
 								<AccordionItem value='author-bio'>
 									<div className='flex w-full justify-between'>
@@ -87,26 +87,38 @@ export default function QuoteCard() {
 											{isBioShown ? 'Less' : 'More'}
 										</AccordionTrigger>
 									</div>
-									<AccordionContent>
-										<p>{quote.author.bio}</p>
-										<a href={quote.author.link} className='underline'>
-											{quote.author.link}
-										</a>
-										<Accordion type='single' collapsible>
-											<AccordionItem value='raw-data'>
-												<AccordionTrigger className='[&>svg]:text-current'>Raw Data</AccordionTrigger>
-												<AccordionContent>
-													<SyntaxHighlighter
-														language='json'
-														wrapLongLines={true}
-														showLineNumbers={true}
-														style={oneDark}
-													>
-														{JSON.stringify(quote, null, 2)}
-													</SyntaxHighlighter>
-												</AccordionContent>
-											</AccordionItem>
-										</Accordion>
+									<AccordionContent className='pb-0'>
+										<div className='w-full'>
+											<p>{quote.author.bio}</p>
+										</div>
+										<div className='w-full'>
+											<a href={quote.author.link} className='underline'>
+												{quote.author.link}
+											</a>
+										</div>
+										<div className='w-full'>
+											<Accordion type='single' collapsible>
+												<AccordionItem value='author-raw'>
+													<AccordionTrigger className='[&>svg]:text-current'>Raw Data</AccordionTrigger>
+													<AccordionContent>
+														<SyntaxHighlighter
+															language='json'
+															wrapLongLines={true}
+															showLineNumbers={true}
+															style={atomOneDarkReasonable}
+															customStyle={{
+																fontSize: '14px',
+																backgroundColor: 'rgba(0, 0, 0, 0.5)',
+																borderRadius: '10px',
+																padding: '10px',
+															}}
+														>
+															{JSON.stringify(quote, null, 2)}
+														</SyntaxHighlighter>
+													</AccordionContent>
+												</AccordionItem>
+											</Accordion>
+										</div>
 									</AccordionContent>
 								</AccordionItem>
 							</Accordion>
