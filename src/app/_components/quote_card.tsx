@@ -10,6 +10,11 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Accordion, AccordionItem } from '@radix-ui/react-accordion'
 import { RefreshCw } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+import json from 'react-syntax-highlighter/dist/esm/languages/prism/json'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
+SyntaxHighlighter.registerLanguage('json', json)
 
 export default function QuoteCard() {
 	const [quote, setQuote] = useState<Quote | undefined>(undefined)
@@ -87,6 +92,21 @@ export default function QuoteCard() {
 										<a href={quote.author.link} className='underline'>
 											{quote.author.link}
 										</a>
+										<Accordion type='single' collapsible>
+											<AccordionItem value='raw-data'>
+												<AccordionTrigger className='[&>svg]:text-current'>Raw Data</AccordionTrigger>
+												<AccordionContent>
+													<SyntaxHighlighter
+														language='json'
+														wrapLongLines={true}
+														showLineNumbers={true}
+														style={oneDark}
+													>
+														{JSON.stringify(quote, null, 2)}
+													</SyntaxHighlighter>
+												</AccordionContent>
+											</AccordionItem>
+										</Accordion>
 									</AccordionContent>
 								</AccordionItem>
 							</Accordion>
