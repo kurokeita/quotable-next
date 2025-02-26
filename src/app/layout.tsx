@@ -24,11 +24,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' className='dark'>
-			<body className={`${robotoFlex.className} ${robotoMono.className}`}>
+			<body className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full`}>
 				<div className='fixed inset-0 bg-[url(/assets/background.jpg)] bg-cover bg-center bg-fixed bg-no-repeat bg-black/70 bg-blend-hard-light z-0' />
-				<div className='fixed z-10 w-screen bg-black/15 backdrop-blur-xl drop-shadow-md border-transparent min-h-5 text-black'>
+				<div className='z-10 w-full bg-black/15 backdrop-blur-xl drop-shadow-md border-transparent min-h-5 text-black'>
 					<div className='mx-auto w-1/2 p-4 flex items-center gap-4 justify-center'>
-						<Quote fill='text-current' size={30} />
+						<Quote fill='text-current' size={30} className='hidden lg:block' />
 						<p className='text-center text-bold text-5xl'>Quotable UI</p>
 					</div>
 				</div>
