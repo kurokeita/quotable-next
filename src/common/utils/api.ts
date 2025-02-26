@@ -9,7 +9,7 @@ export async function healthCheck(): Promise<boolean> {
 	return json.status === 'ok'
 }
 
-export async function randomQuote(request: RandomQuoteRequest): Promise<Quote> {
+export async function randomQuote(request: RandomQuoteRequest): Promise<Quote | undefined> {
 	const url = new URL(`${config.quotableApiUrl}/quotes/random`)
 	const { author, query } = request
 
@@ -21,10 +21,15 @@ export async function randomQuote(request: RandomQuoteRequest): Promise<Quote> {
 	}
 
 	const response = await fetch(url)
+
+	if (!response.ok) {
+		throw new Error('Failed to fetch quote')
+	}
+
 	const json = await response.json()
 
 	if (!json.quote) {
-		throw new Error('Failed to fetch quote')
+		return undefined
 	}
 
 	return json.quote as Quote
