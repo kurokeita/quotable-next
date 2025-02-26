@@ -66,7 +66,7 @@ export default function QuoteCard() {
 
 	if (!quote) {
 		return (
-			<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full sm:w-[640px] border-transparent text-black'>
+			<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full sm:w-[640px] border-transparent text-black max-w-screen'>
 				<CardHeader className='justify-center flex flex-col gap-4'>
 					{(form.watch('query') || form.watch('author')) && (
 						<div className='w-full'>
@@ -90,7 +90,7 @@ export default function QuoteCard() {
 	}
 
 	return (
-		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full border-transparent text-black'>
+		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full border-transparent text-black max-w-screen'>
 			<CardHeader className='justify-center flex flex-col gap-4'>
 				{(form.watch('query') || form.watch('author')) && (
 					<div className='w-full'>
