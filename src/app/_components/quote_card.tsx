@@ -76,10 +76,10 @@ export default function QuoteCard() {
 						</div>
 					)}
 				</CardHeader>
-				<CardContent className='p-4 md:p-7 backdrop-blur-sm'>
+				<CardContent className='p-4 md:p-7 backdrop-blur-xs'>
 					<Skeleton className='w-full h-[20px] rounded-full' />
 				</CardContent>
-				<CardFooter className='backdrop-blur-sm'>
+				<CardFooter className='backdrop-blur-xs'>
 					<div className='flex flex-col gap-4 w-full'>
 						<Skeleton className='w-full h-[20px] rounded-full' />
 						<Actions handler={handleFilter} form={form} />

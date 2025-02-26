@@ -17,7 +17,7 @@ function Toast(props: ToastProps) {
 	const { title, description, button, id } = props
 
 	return (
-		<div className='flex rounded-lg bg-red-800/50 border-red-500 border backdrop-blur-sm shadow-lg ring-1 ring-black/5 w-full md:max-w-[364px] items-center p-4'>
+		<div className='flex rounded-lg bg-red-800/50 border-red-500 border backdrop-blur-xs shadow-lg ring-1 ring-black/5 w-full md:max-w-[364px] items-center p-4'>
 			<div className='flex flex-1 items-center'>
 				<div className='w-full'>
 					<p className='text-sm font-medium text-gray-900'>{title}</p>
