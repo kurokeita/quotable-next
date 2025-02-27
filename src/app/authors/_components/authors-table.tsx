@@ -32,6 +32,10 @@ import {
 import Link from 'next/link'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
+type ColumnMetadata = {
+	className?: string
+}
+
 export default function AuthorsTable() {
 	const [isLoading, setIsLoading] = useState<boolean>(true)
 	const [authorsData, setAuthorsData] = useState<FetchAuthorsResponse | undefined>(undefined)
@@ -155,7 +159,7 @@ export default function AuthorsTable() {
 						cell: () => <Skeleton className='h-8 w-full rounded-full' />,
 					}))
 				: columns,
-		[isLoading],
+		[isLoading, columns],
 	)
 
 	const table = useReactTable({
@@ -210,7 +214,7 @@ export default function AuthorsTable() {
 
 	useEffect(() => {
 		fetchData({ page, pageSize, sorting })
-	}, [page, pageSize, sorting])
+	}, [page, pageSize, sorting, fetchData])
 
 	return (
 		<div>
@@ -224,7 +228,7 @@ export default function AuthorsTable() {
 										key={h.id}
 										className={cn(
 											'text-current font-bold flex items-center',
-											(h.column.columnDef.meta as any)?.className,
+											(h.column.columnDef.meta as ColumnMetadata)?.className,
 										)}
 									>
 										{h.isPlaceholder ? null : flexRender(h.column.columnDef.header, h.getContext())}
@@ -237,7 +241,7 @@ export default function AuthorsTable() {
 						{table.getRowModel().rows.map((row) => (
 							<TableRow key={row.id} className='flex w-full'>
 								{row.getVisibleCells().map((cell) => (
-									<TableCell key={cell.id} className={cn((cell.column.columnDef.meta as any)?.className)}>
+									<TableCell key={cell.id} className={cn((cell.column.columnDef.meta as ColumnMetadata)?.className)}>
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}
 									</TableCell>
 								))}

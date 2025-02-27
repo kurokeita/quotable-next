@@ -11,7 +11,7 @@ export default function NotFound() {
 					<h2 className='text-2xl mb-6'>Page Not Found</h2>
 				</CardHeader>
 				<CardContent className='flex flex-col justify-center gap-4'>
-					<p className='mb-8'>The page you are looking for doesn't exist or has been moved.</p>
+					<p className='mb-8'>The page you are looking for doesn&apos;t exist or has been moved.</p>
 					<div className='flex justify-center w-1/2 mx-auto gap-4'>
 						<Button asChild className='cursor-pointer'>
 							<Link href='/'>Return Home</Link>
