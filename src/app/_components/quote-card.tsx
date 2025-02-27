@@ -225,11 +225,8 @@ function Actions({
 		<div className='flex gap-4'>
 			<TooltipProvider delayDuration={300}>
 				<Tooltip>
-					<TooltipTrigger
-						className='bg-transparent shadow-none hover:bg-transparent [&:hover>svg]:animate-spin'
-						onClick={fetchHandler}
-					>
-						<RefreshCw size={20} />
+					<TooltipTrigger className='bg-transparent shadow-none hover:bg-transparent ' onClick={fetchHandler}>
+						<RefreshCw size={20} className='hover:animate-spin' />
 					</TooltipTrigger>
 					<TooltipContent>
 						<p>Fetch new quote</p>
