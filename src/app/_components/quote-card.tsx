@@ -1,6 +1,6 @@
 'use client'
 
-import { Quote } from '@/common/types/quote_types'
+import { Quote } from '@/common/types/quotable'
 import { randomQuote } from '@/common/utils/api'
 import { errorToast } from '@/common/utils/notify'
 import { AccordionContent, AccordionTrigger } from '@/components/ui/accordion'

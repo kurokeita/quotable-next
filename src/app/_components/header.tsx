@@ -13,9 +13,9 @@ import { usePathname } from 'next/navigation'
 export default function Header() {
 	const pathname = usePathname()
 
-	const linkColor = (href: string) => {
+	const linkStyles = (href: string) => {
 		const equal = href === pathname
-		return equal ? 'text-white' : 'text-black'
+		return equal ? 'underline font-bold text-xl' : 'text-base'
 	}
 	return (
 		<div className='z-10 w-full bg-black/15 backdrop-blur-xl drop-shadow-md border-transparent text-black'>
@@ -29,14 +29,18 @@ export default function Header() {
 						<NavigationMenuList>
 							<NavigationMenuItem>
 								<Link href='/' legacyBehavior passHref prefetch={true}>
-									<NavigationMenuLink className={`hover:bg-transparent focus:bg-transparent ${linkColor('/')}`}>
+									<NavigationMenuLink
+										className={`hover:bg-transparent focus:bg-transparent focus:text-current ${linkStyles('/')}`}
+									>
 										Home
 									</NavigationMenuLink>
 								</Link>
 							</NavigationMenuItem>
 							<NavigationMenuItem>
 								<Link href='/authors' legacyBehavior passHref prefetch={true}>
-									<NavigationMenuLink className={`hover:bg-transparent focus:bg-transparent ${linkColor('/authors')}`}>
+									<NavigationMenuLink
+										className={`hover:bg-transparent focus:bg-transparent focus:text-current ${linkStyles('/authors')}`}
+									>
 										Authors
 									</NavigationMenuLink>
 								</Link>
