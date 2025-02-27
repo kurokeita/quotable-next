@@ -18,7 +18,7 @@ export default function Header() {
 		return equal ? 'underline font-bold text-xl' : 'text-base'
 	}
 	return (
-		<div className='z-10 w-full bg-black/15 backdrop-blur-xl drop-shadow-md border-transparent text-black'>
+		<div className='z-10 w-full bg-black/15 backdrop-blur-xl drop-shadow-md border-transparent text-current'>
 			<div className='flex flex-col'>
 				<div className='mx-auto w-1/2 p-4 flex items-center gap-4 justify-center'>
 					<Quote fill='text-current' size={30} className='hidden lg:block' />

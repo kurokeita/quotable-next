@@ -5,7 +5,7 @@ import Link from 'next/link'
 export default function NotFound() {
 	return (
 		<div className='flex flex-col items-center justify-center px-4 text-center max-w-fit mx-auto grow'>
-			<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full border-transparent text-black max-w-screen'>
+			<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full border-transparent text-current max-w-screen'>
 				<CardHeader>
 					<h1 className='text-6xl font-bold mb-4'>404</h1>
 					<h2 className='text-2xl mb-6'>Page Not Found</h2>

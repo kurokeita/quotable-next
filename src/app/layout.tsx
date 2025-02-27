@@ -25,7 +25,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' className='dark'>
-			<body className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full min-h-screen flex flex-col`}>
+			<body
+				className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full min-h-screen flex flex-col text-black`}
+			>
 				<div className='fixed inset-0 bg-[url(/assets/background.jpg)] bg-cover bg-center bg-fixed bg-no-repeat bg-black/70 bg-blend-hard-light z-0' />
 				<Header />
 				{children}

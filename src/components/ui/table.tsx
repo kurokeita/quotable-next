@@ -113,7 +113,7 @@ function DataTablePagination<TData>({
 						</SelectTrigger>
 						<SelectContent
 							side='top'
-							className='bg-black/15 backdrop-blur-xl drop-shadow-md border-transparent text-black'
+							className='bg-black/15 backdrop-blur-xl drop-shadow-md border-transparent text-current'
 						>
 							{limitConfiguration.map((pageSize) => (
 								<SelectItem key={pageSize} value={`${pageSize}`} className='cursor-pointer'>

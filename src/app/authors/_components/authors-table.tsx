@@ -223,7 +223,7 @@ export default function AuthorsTable() {
 									<TableHead
 										key={h.id}
 										className={cn(
-											'text-black font-bold flex items-center',
+											'text-current font-bold flex items-center',
 											(h.column.columnDef.meta as any)?.className,
 										)}
 									>
