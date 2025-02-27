@@ -1,6 +1,6 @@
 'use client'
 
-import { Quote } from '@/common/types/quote_types'
+import { Quote } from '@/common/types/quotable'
 import { randomQuote } from '@/common/utils/api'
 import { errorToast } from '@/common/utils/notify'
 import { AccordionContent, AccordionTrigger } from '@/components/ui/accordion'
@@ -82,7 +82,7 @@ export default function QuoteCard() {
 	}, [fetchQuote])
 
 	return (
-		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full border-transparent text-black max-w-screen'>
+		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full border-transparent text-current max-w-screen'>
 			<CardContent className='flex flex-col justify-center gap-4'>
 				<Accordion type='single' className='w-full pb-0' value={isFilterShown ? 'filter' : ''}>
 					<AccordionItem value='filter'>
@@ -225,11 +225,8 @@ function Actions({
 		<div className='flex gap-4'>
 			<TooltipProvider delayDuration={300}>
 				<Tooltip>
-					<TooltipTrigger
-						className='bg-transparent shadow-none hover:bg-transparent [&:hover>svg]:animate-spin'
-						onClick={fetchHandler}
-					>
-						<RefreshCw size={20} />
+					<TooltipTrigger className='bg-transparent shadow-none hover:bg-transparent ' onClick={fetchHandler}>
+						<RefreshCw size={20} className='hover:animate-spin' />
 					</TooltipTrigger>
 					<TooltipContent>
 						<p>Fetch new quote</p>

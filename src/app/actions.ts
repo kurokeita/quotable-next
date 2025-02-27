@@ -1,6 +1,6 @@
 'use server'
 
-import { Quote } from '@/common/types/quote_types'
+import { Quote } from '@/common/types/quotable'
 
 export async function fetchRandomQuote(): Promise<Quote> {
 	const response = await fetch('/api/quotes/random')
