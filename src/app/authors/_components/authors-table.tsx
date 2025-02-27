@@ -218,7 +218,7 @@ export default function AuthorsTable() {
 				<Table className='flex flex-col'>
 					<TableHeader className='w-full'>
 						{table.getHeaderGroups().map((g) => (
-							<TableRow key={g.id} className='flex w-full'>
+							<TableRow key={g.id} className='flex w-full hover:bg-transparent'>
 								{g.headers.map((h) => (
 									<TableHead
 										key={h.id}

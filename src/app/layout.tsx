@@ -1,3 +1,4 @@
+import Footer from '@/app/_components/footer'
 import Header from '@/app/_components/header'
 import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
@@ -29,6 +30,7 @@ export default function RootLayout({
 				<Header />
 				{children}
 				<Toaster position='top-right' closeButton richColors theme='dark' />
+				<Footer />
 			</body>
 		</html>
 	)
