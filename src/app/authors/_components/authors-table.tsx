@@ -80,7 +80,7 @@ export default function AuthorsTable() {
 			{
 				accessorKey: 'name',
 				meta: {
-					className: 'flex-2 cursor',
+					className: 'w-32 sm:flex-2 cursor',
 				},
 				header: ({ column }) => (
 					<TableHeaderWithSortingIcon
@@ -95,27 +95,27 @@ export default function AuthorsTable() {
 				accessorKey: 'description',
 				header: 'Description',
 				meta: {
-					className: 'flex-2 text-justify',
+					className: 'w-48 sm:flex-2 text-justify',
 				},
 			},
 			{
 				accessorKey: 'bio',
 				header: 'Bio',
 				meta: {
-					className: 'flex-4 text-justify',
+					className: 'w-96 sm:flex-4 text-justify',
 				},
 			},
 			{
 				accessorKey: 'link',
 				header: 'Link',
 				meta: {
-					className: 'flex-2 truncate',
+					className: 'w-48 sm:flex-2 truncate',
 				},
 				cell: ({ row }) => (
 					<TooltipProvider>
 						<Tooltip>
 							<TooltipTrigger asChild>
-								<div className='truncate w-full'>
+								<div className='w-48 sm:flex-2 truncate'>
 									<Link href={row.getValue('link')} target='_blank' className='underline'>
 										{row.getValue('link')}
 									</Link>
@@ -139,9 +139,9 @@ export default function AuthorsTable() {
 					/>
 				),
 				meta: {
-					className: 'flex-1',
+					className: 'w-28 sm:flex-1',
 				},
-				cell: ({ row }) => <div className='text-center'>{row.getValue('quotesCount')}</div>,
+				cell: ({ row }) => <div className='text-center sm:flex-2'>{row.getValue('quotesCount')}</div>,
 			},
 		],
 		[handleColumnSorting],
@@ -218,8 +218,8 @@ export default function AuthorsTable() {
 
 	return (
 		<div>
-			<div className='rounded-md'>
-				<Table className='flex flex-col'>
+			<div className='rounded:none sm:rounded-md overflow-auto'>
+				<Table className='flex flex-col min-w-fit'>
 					<TableHeader className='w-full'>
 						{table.getHeaderGroups().map((g) => (
 							<TableRow key={g.id} className='flex w-full hover:bg-transparent'>

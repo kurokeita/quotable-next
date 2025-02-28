@@ -14,10 +14,6 @@ export default function Footer() {
 						<Link href='https://ui.shadcn.com' className='underline' target='_blank'>
 							shadcn
 						</Link>
-						<span>. The source code is available on </span>
-						<Link href='https://github.com/kurokeita/quotable-next' className='underline' target='_blank'>
-							GitHub
-						</Link>
 						<span>.</span>
 					</p>
 				</div>

@@ -146,7 +146,7 @@ function DataTablePagination<TData>({
 				<div className='flex items-center gap-2'>
 					<Button
 						variant='outline'
-						className='hidden h-8 w-8 p-0 lg:flex cursor-pointer bg-black/15 backdrop-blur-xl'
+						className='hidden h-8 w-8 p-0 sm:flex cursor-pointer bg-black/15 backdrop-blur-xl'
 						onClick={() => table.setPageIndex(0)}
 						disabled={!table.getCanPreviousPage()}
 					>
@@ -173,7 +173,7 @@ function DataTablePagination<TData>({
 					</Button>
 					<Button
 						variant='outline'
-						className='hidden h-8 w-8 p-0 lg:flex cursor-pointer bg-black/15 backdrop-blur-xl'
+						className='hidden h-8 w-8 p-0 sm:flex cursor-pointer bg-black/15 backdrop-blur-xl'
 						onClick={() => table.setPageIndex(table.getPageCount() - 1)}
 						disabled={!table.getCanNextPage()}
 					>
