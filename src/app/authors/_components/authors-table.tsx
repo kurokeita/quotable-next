@@ -218,7 +218,7 @@ export default function AuthorsTable() {
 
 	return (
 		<div>
-			<div className='rounded-md overflow-auto'>
+			<div className='rounded:none sm:rounded-md overflow-auto'>
 				<Table className='flex flex-col min-w-fit'>
 					<TableHeader className='w-full'>
 						{table.getHeaderGroups().map((g) => (
