@@ -99,8 +99,8 @@ function DataTablePagination<TData>({
 	}, [table, currentPage])
 
 	return (
-		<div className='flex items-center justify-between px-4 gap-4'>
-			<div className='flex items-center space-x-6 lg:space-x-8'>
+		<div className='flex grow sm:grow-none items-center px-4 justify-end'>
+			<div className='flex flex-col sm:flex-row items-center gap-4 sm:gap-6'>
 				<div className='flex items-center space-x-2'>
 					<p className='text-sm font-medium'>Rows per page</p>
 					<Select
@@ -109,7 +109,7 @@ function DataTablePagination<TData>({
 							table.setPageSize(Number(value))
 						}}
 					>
-						<SelectTrigger className='h-8 max-w-fit cursor-pointer [&>svg]:stroke-black'>
+						<SelectTrigger className='h-10 max-w-fit cursor-pointer [&>svg]:stroke-black'>
 							<SelectValue placeholder={table.getState().pagination.pageSize} />
 						</SelectTrigger>
 						<SelectContent
@@ -124,62 +124,66 @@ function DataTablePagination<TData>({
 						</SelectContent>
 					</Select>
 				</div>
-				<div className='flex flex-row items-center justify-items-center align-middle justify-center text-sm font-medium'>
-					<div className='min-w-fit'>Page&nbsp;</div>
-					<div>
-						<form onSubmit={handlePageChange}>
-							<Input
-								type='number'
-								min={1}
-								max={table.getPageCount()}
-								value={pageIndex}
-								onChange={(e) => setPageIndex(Number(e.target.value))}
-								className='field-sizing-content [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
-							/>
-							<VisuallyHidden>
-								<Button type='submit' />
-							</VisuallyHidden>
-						</form>
+				<div className='flex flex-row items-center justify-items-center align-middle justify-center text-sm font-medium gap-2 sm:gap-6'>
+					<div className='flex flex-row items-center'>
+						<div className='min-w-fit'>Page&nbsp;</div>
+						<div>
+							<form onSubmit={handlePageChange}>
+								<Input
+									type='number'
+									min={1}
+									max={table.getPageCount()}
+									value={pageIndex}
+									onChange={(e) => setPageIndex(Number(e.target.value))}
+									className='field-sizing-content [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none size-10 p-0 text-center'
+								/>
+								<VisuallyHidden>
+									<Button type='submit' />
+								</VisuallyHidden>
+							</form>
+						</div>
+						<div className='min-w-fit'>&nbsp;of {table.getPageCount()}</div>
 					</div>
-					<div className='min-w-fit'>&nbsp;of {table.getPageCount()}</div>
-				</div>
-				<div className='flex items-center gap-2'>
-					<Button
-						variant='outline'
-						className='hidden h-8 w-8 p-0 sm:flex cursor-pointer bg-black/15 backdrop-blur-xl'
-						onClick={() => table.setPageIndex(0)}
-						disabled={!table.getCanPreviousPage()}
-					>
-						<span className='sr-only'>Go to first page</span>
-						<ChevronsLeft />
-					</Button>
-					<Button
-						variant='outline'
-						className='h-8 w-8 p-0 cursor-pointer bg-black/15 backdrop-blur-xl'
-						onClick={() => table.previousPage()}
-						disabled={!table.getCanPreviousPage()}
-					>
-						<span className='sr-only'>Go to previous page</span>
-						<ChevronLeft />
-					</Button>
-					<Button
-						variant='outline'
-						className='h-8 w-8 p-0 cursor-pointer bg-black/15 backdrop-blur-xl'
-						onClick={() => table.nextPage()}
-						disabled={!table.getCanNextPage()}
-					>
-						<span className='sr-only'>Go to next page</span>
-						<ChevronRight />
-					</Button>
-					<Button
-						variant='outline'
-						className='hidden h-8 w-8 p-0 sm:flex cursor-pointer bg-black/15 backdrop-blur-xl'
-						onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-						disabled={!table.getCanNextPage()}
-					>
-						<span className='sr-only'>Go to last page</span>
-						<ChevronsRight />
-					</Button>
+					<div className='flex flex-row items-center'>
+						<div className='flex items-center gap-2'>
+							<Button
+								variant='outline'
+								className='hidden h-8 w-8 p-0 sm:flex cursor-pointer bg-black/15 backdrop-blur-xl'
+								onClick={() => table.setPageIndex(0)}
+								disabled={!table.getCanPreviousPage()}
+							>
+								<span className='sr-only'>Go to first page</span>
+								<ChevronsLeft />
+							</Button>
+							<Button
+								variant='outline'
+								className='h-8 w-8 p-0 cursor-pointer bg-black/15 backdrop-blur-xl'
+								onClick={() => table.previousPage()}
+								disabled={!table.getCanPreviousPage()}
+							>
+								<span className='sr-only'>Go to previous page</span>
+								<ChevronLeft />
+							</Button>
+							<Button
+								variant='outline'
+								className='h-8 w-8 p-0 cursor-pointer bg-black/15 backdrop-blur-xl'
+								onClick={() => table.nextPage()}
+								disabled={!table.getCanNextPage()}
+							>
+								<span className='sr-only'>Go to next page</span>
+								<ChevronRight />
+							</Button>
+							<Button
+								variant='outline'
+								className='hidden h-8 w-8 p-0 sm:flex cursor-pointer bg-black/15 backdrop-blur-xl'
+								onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+								disabled={!table.getCanNextPage()}
+							>
+								<span className='sr-only'>Go to last page</span>
+								<ChevronsRight />
+							</Button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
