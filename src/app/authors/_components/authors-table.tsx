@@ -149,7 +149,7 @@ export default function AuthorsTable() {
 
 	const tableData = useMemo(
 		() => (isLoading ? Array(pageSize).fill({}) : (authorsData?.data ?? [])),
-		[isLoading, authorsData, pageSize],
+		[isLoading, authorsData],
 	)
 	const tableColumns = useMemo(
 		() =>
