@@ -1,11 +1,4 @@
-# Ignore everything by default
-*.*
-
-# Only include specific file types
-!*.jsx
-!*.tsx
-!*.js
-!*.ts
-!*.html
-!*.svg
-!*.css
+**/.git
+**/node_modules
+**/.next
+**/.vercel
