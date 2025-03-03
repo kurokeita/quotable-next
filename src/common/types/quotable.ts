@@ -10,7 +10,7 @@ export type Author = {
 	description: string
 	bio: string
 	link: string
-	quoteCount?: number
+	quotesCount?: number
 }
 
 export type Quote = {
