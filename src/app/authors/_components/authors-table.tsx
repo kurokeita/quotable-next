@@ -1,5 +1,6 @@
 'use client'
 
+import RawDataDialog from '@/app/_components/raw-data-dialog'
 import { Author } from '@/common/types/quotable'
 import { FetchAuthorsResponse } from '@/common/types/response'
 import { fetchAuthors } from '@/common/utils/api'
@@ -90,6 +91,11 @@ export default function AuthorsTable() {
 						className='hover:bg-transparent cursor-pointer hover:text-current'
 					/>
 				),
+				cell: ({ row }) => (
+					<Link href={`/authors/${row.original.slug}`} className='no-underline'>
+						{row.original.name}
+					</Link>
+				),
 			},
 			{
 				accessorKey: 'description',
@@ -116,13 +122,13 @@ export default function AuthorsTable() {
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<div className='w-48 sm:flex-2 truncate'>
-									<Link href={row.getValue('link')} target='_blank' className='underline'>
-										{row.getValue('link')}
+									<Link href={row.original.link} target='_blank' className='underline'>
+										{row.original.link}
 									</Link>
 								</div>
 							</TooltipTrigger>
 							<TooltipContent>
-								<p>{row.getValue('link')}</p>
+								<p>{row.original.link}</p>
 							</TooltipContent>
 						</Tooltip>
 					</TooltipProvider>
@@ -141,7 +147,7 @@ export default function AuthorsTable() {
 				meta: {
 					className: 'w-28 sm:flex-1',
 				},
-				cell: ({ row }) => <div className='text-center sm:flex-2'>{row.getValue('quotesCount')}</div>,
+				cell: ({ row }) => <div className='text-center sm:flex-2'>{row.original.quotesCount}</div>,
 			},
 		],
 		[handleColumnSorting],
@@ -250,7 +256,8 @@ export default function AuthorsTable() {
 					</TableBody>
 				</Table>
 			</div>
-			<div className='flex items-center justify-end gap-4 pt-4'>
+			<div className='flex items-center justify-between gap-4 pt-4 pl-4'>
+				<RawDataDialog data={authorsData} tooltip='Raw authors data' />
 				<DataTablePagination table={table} limitConfiguration={[10, 25, 50, 100]} />
 			</div>
 		</div>

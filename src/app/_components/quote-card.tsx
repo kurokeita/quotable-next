@@ -16,12 +16,8 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { Filter, RefreshCw } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
-import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json'
-import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { z } from 'zod'
-
-SyntaxHighlighter.registerLanguage('json', json)
+import RawDataDialog from './raw-data-dialog'
 
 const quoteFilterSchema = z.object({
 	author: z.string().optional(),
@@ -69,13 +65,13 @@ export default function QuoteCard() {
 		form.handleSubmit(fetchQuote)()
 	}
 
-	const toggleFilter = () => {
+	const toggleFilter = useCallback(() => {
 		if (isFilterShown) {
 			form.reset()
 		}
 
 		setIsFilterShown(!isFilterShown)
-	}
+	}, [isFilterShown, form])
 
 	useEffect(() => {
 		fetchQuote()
@@ -179,28 +175,8 @@ export default function QuoteCard() {
 													{quote.author.link}
 												</a>
 											</div>
-											<div className='w-full'>
-												<Accordion type='single' collapsible>
-													<AccordionItem value='author-raw'>
-														<AccordionTrigger className='[&>svg]:text-current'>Raw Data</AccordionTrigger>
-														<AccordionContent>
-															<SyntaxHighlighter
-																language='json'
-																wrapLongLines={true}
-																showLineNumbers={true}
-																style={atomOneDarkReasonable}
-																customStyle={{
-																	fontSize: '14px',
-																	backgroundColor: 'rgba(0, 0, 0, 0.5)',
-																	borderRadius: '10px',
-																	padding: '10px',
-																}}
-															>
-																{JSON.stringify(quote, null, 2)}
-															</SyntaxHighlighter>
-														</AccordionContent>
-													</AccordionItem>
-												</Accordion>
+											<div className='flex justify-end'>
+												<RawDataDialog data={quote} tooltip='Raw quote data' />
 											</div>
 										</AccordionContent>
 									</AccordionItem>
