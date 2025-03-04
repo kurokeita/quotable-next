@@ -5,7 +5,7 @@ import { FetchQuotesResponse } from '@/common/types/response'
 import { fetchQuotes } from '@/common/utils/api'
 import { errorToast } from '@/common/utils/notify'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import {
 	Dialog,
 	DialogContent,
@@ -120,7 +120,7 @@ export default function AuthorCard({ author }: { author: Author }) {
 	}, [fetchData, page, pageSize])
 
 	return (
-		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full grow sm:grow-0 border-transparent text-current max-w-screen rounded-none sm:rounded-md flex justify-start sm:justify-center'>
+		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full grow sm:grow-0 border-transparent text-current max-w-screen rounded-none sm:rounded-md flex justify-start sm:justify-center pb-0'>
 			<CardHeader>
 				<CardTitle className='text-center'>{author.name}</CardTitle>
 				<CardDescription className='text-center text-current'>{author.description}</CardDescription>
@@ -139,7 +139,7 @@ export default function AuthorCard({ author }: { author: Author }) {
 										{table.getRowModel().rows.map((row) => (
 											<TableRow key={row.id} className='flex w-full'>
 												{row.getVisibleCells().map((cell) => (
-													<TableCell key={cell.id} className='px-0'>
+													<TableCell key={cell.id} className='text-justify'>
 														{flexRender(cell.column.columnDef.cell, cell.getContext())}
 													</TableCell>
 												))}
@@ -151,41 +151,41 @@ export default function AuthorCard({ author }: { author: Author }) {
 							<div className='flex items-center justify-end gap-4 pt-4'>
 								<DataTablePagination table={table} limitConfiguration={[10, 25, 50, 100]} />
 							</div>
+							<div className='flex justify-end px-4 pt-4 pb-0'>
+								<Dialog>
+									<DialogTrigger className='cursor-pointer'>Raw data</DialogTrigger>
+									<DialogContent
+										className='bg-black/15 backdrop-blur-xl drop-shadow-md overflow-auto max-h-screen min-w-screen lg:max-h-3/4 lg:min-w-3/4 p-0 border-0'
+										overlayClassName='bg-black/25 backdrop-blur-xl'
+										closeButtonClassName='block lg:hidden text-white'
+									>
+										<VisuallyHidden>
+											<DialogHeader>
+												<DialogTitle></DialogTitle>
+												<DialogDescription></DialogDescription>
+											</DialogHeader>
+										</VisuallyHidden>
+										<SyntaxHighlighter
+											language='json'
+											wrapLongLines={true}
+											showLineNumbers={true}
+											style={atomOneDarkReasonable}
+											customStyle={{
+												fontSize: '14px',
+												backgroundColor: 'rgba(0, 0, 0, 0.5)',
+												borderRadius: '10px',
+												padding: '10px',
+											}}
+										>
+											{JSON.stringify(quotesData, null, 2)}
+										</SyntaxHighlighter>
+									</DialogContent>
+								</Dialog>
+							</div>
 						</AccordionContent>
 					</AccordionItem>
 				</Accordion>
 			</CardContent>
-			<CardFooter className='justify-end'>
-				<Dialog>
-					<DialogTrigger className='cursor-pointer'>Raw data</DialogTrigger>
-					<DialogContent
-						noCloseButton={false}
-						className='bg-black/15 backdrop-blur-xl drop-shadow-md overflow-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-h-3/4 min-w-3/4 p-0 border-0'
-						overlayClassName='bg-black/25 backdrop-blur-xl'
-					>
-						<VisuallyHidden>
-							<DialogHeader>
-								<DialogTitle></DialogTitle>
-								<DialogDescription></DialogDescription>
-							</DialogHeader>
-						</VisuallyHidden>
-						<SyntaxHighlighter
-							language='json'
-							wrapLongLines={true}
-							showLineNumbers={true}
-							style={atomOneDarkReasonable}
-							customStyle={{
-								fontSize: '14px',
-								backgroundColor: 'rgba(0, 0, 0, 0.5)',
-								borderRadius: '10px',
-								padding: '10px',
-							}}
-						>
-							{JSON.stringify(quotesData, null, 2)}
-						</SyntaxHighlighter>
-					</DialogContent>
-				</Dialog>
-			</CardFooter>
 		</Card>
 	)
 }

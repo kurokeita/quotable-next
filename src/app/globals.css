@@ -107,6 +107,15 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+
+	/* Hide scrollbars for all elements while maintaining functionality */
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	* {
+		scrollbar-width: none;
+	}
 }
 
 :root {
@@ -213,28 +222,28 @@
   ---break---
 */
 @theme inline {
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  /*
+	--animate-accordion-down: accordion-down 0.2s ease-out;
+	--animate-accordion-up: accordion-up 0.2s ease-out;
+	/*
   ---break---
 */
-  @keyframes accordion-down {
-    from {
-      height: 0;
+	@keyframes accordion-down {
+		from {
+			height: 0;
 		}
-    to {
-      height: var(--radix-accordion-content-height);
+		to {
+			height: var(--radix-accordion-content-height);
 		}
 	}
-  /*
+	/*
   ---break---
 */
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
+	@keyframes accordion-up {
+		from {
+			height: var(--radix-accordion-content-height);
 		}
-    to {
-      height: 0;
+		to {
+			height: 0;
 		}
 	}
 }

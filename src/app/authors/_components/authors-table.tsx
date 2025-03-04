@@ -4,6 +4,14 @@ import { Author } from '@/common/types/quotable'
 import { FetchAuthorsResponse } from '@/common/types/response'
 import { fetchAuthors } from '@/common/utils/api'
 import { errorToast } from '@/common/utils/notify'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
 	DataTablePagination,
@@ -17,6 +25,7 @@ import {
 } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import {
 	Column,
 	ColumnDef,
@@ -31,6 +40,11 @@ import {
 } from '@tanstack/react-table'
 import Link from 'next/link'
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json'
+import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+
+SyntaxHighlighter.registerLanguage('json', json)
 
 type ColumnMetadata = {
 	className?: string
@@ -257,6 +271,37 @@ export default function AuthorsTable() {
 			</div>
 			<div className='flex items-center justify-end gap-4 pt-4'>
 				<DataTablePagination table={table} limitConfiguration={[10, 25, 50, 100]} />
+			</div>
+			<div className='flex justify-end px-4 pt-4 pb-0'>
+				<Dialog>
+					<DialogTrigger className='cursor-pointer'>Raw data</DialogTrigger>
+					<DialogContent
+						className='bg-black/15 backdrop-blur-xl drop-shadow-md overflow-auto max-h-screen min-w-screen lg:max-h-3/4 lg:min-w-3/4 p-0 border-0'
+						overlayClassName='bg-black/25 backdrop-blur-xl'
+						closeButtonClassName='block lg:hidden text-white'
+					>
+						<VisuallyHidden>
+							<DialogHeader>
+								<DialogTitle></DialogTitle>
+								<DialogDescription></DialogDescription>
+							</DialogHeader>
+						</VisuallyHidden>
+						<SyntaxHighlighter
+							language='json'
+							wrapLongLines={true}
+							showLineNumbers={true}
+							style={atomOneDarkReasonable}
+							customStyle={{
+								fontSize: '14px',
+								backgroundColor: 'rgba(0, 0, 0, 0.5)',
+								borderRadius: '10px',
+								padding: '10px',
+							}}
+						>
+							{JSON.stringify(authorsData, null, 2)}
+						</SyntaxHighlighter>
+					</DialogContent>
+				</Dialog>
 			</div>
 		</div>
 	)
