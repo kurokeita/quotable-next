@@ -6,14 +6,6 @@ import { errorToast } from '@/common/utils/notify'
 import { AccordionContent, AccordionTrigger } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from '@/components/ui/dialog'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -24,12 +16,8 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { Filter, RefreshCw } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
-import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json'
-import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { z } from 'zod'
-
-SyntaxHighlighter.registerLanguage('json', json)
+import RawDataDialog from './raw-data-dialog'
 
 const quoteFilterSchema = z.object({
 	author: z.string().optional(),
@@ -77,13 +65,13 @@ export default function QuoteCard() {
 		form.handleSubmit(fetchQuote)()
 	}
 
-	const toggleFilter = () => {
+	const toggleFilter = useCallback(() => {
 		if (isFilterShown) {
 			form.reset()
 		}
 
 		setIsFilterShown(!isFilterShown)
-	}
+	}, [isFilterShown, form])
 
 	useEffect(() => {
 		fetchQuote()
@@ -187,36 +175,8 @@ export default function QuoteCard() {
 													{quote.author.link}
 												</a>
 											</div>
-											<div className='flex justify-end px-4 pt-4 pb-0'>
-												<Dialog>
-													<DialogTrigger className='cursor-pointer'>Raw data</DialogTrigger>
-													<DialogContent
-														className='bg-black/15 backdrop-blur-xl drop-shadow-md overflow-auto max-h-screen min-w-screen lg:max-h-3/4 lg:min-w-3/4 p-0 border-0'
-														overlayClassName='bg-black/25 backdrop-blur-xl'
-														closeButtonClassName='block lg:hidden text-white'
-													>
-														<VisuallyHidden>
-															<DialogHeader>
-																<DialogTitle></DialogTitle>
-																<DialogDescription></DialogDescription>
-															</DialogHeader>
-														</VisuallyHidden>
-														<SyntaxHighlighter
-															language='json'
-															wrapLongLines={true}
-															showLineNumbers={true}
-															style={atomOneDarkReasonable}
-															customStyle={{
-																fontSize: '14px',
-																backgroundColor: 'rgba(0, 0, 0, 0.5)',
-																borderRadius: '10px',
-																padding: '10px',
-															}}
-														>
-															{JSON.stringify(quote, null, 2)}
-														</SyntaxHighlighter>
-													</DialogContent>
-												</Dialog>
+											<div className='flex justify-end'>
+												<RawDataDialog data={quote} tooltip='Raw quote data' />
 											</div>
 										</AccordionContent>
 									</AccordionItem>

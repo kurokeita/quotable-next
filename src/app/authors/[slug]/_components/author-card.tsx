@@ -1,22 +1,14 @@
 'use client'
 
+import RawDataDialog from '@/app/_components/raw-data-dialog'
 import { Author, Quote } from '@/common/types/quotable'
 import { FetchQuotesResponse } from '@/common/types/response'
 import { fetchQuotes } from '@/common/utils/api'
 import { errorToast } from '@/common/utils/notify'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from '@/components/ui/dialog'
 import { Skeleton } from '@/components/ui/skeleton'
 import { DataTablePagination, Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import {
 	ColumnDef,
 	flexRender,
@@ -27,11 +19,6 @@ import {
 	useReactTable,
 } from '@tanstack/react-table'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
-import json from 'react-syntax-highlighter/dist/esm/languages/hljs/json'
-import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-
-SyntaxHighlighter.registerLanguage('json', json)
 
 export default function AuthorCard({ author }: { author: Author }) {
 	const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -122,7 +109,14 @@ export default function AuthorCard({ author }: { author: Author }) {
 	return (
 		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full grow sm:grow-0 border-transparent text-current max-w-screen rounded-none sm:rounded-md flex justify-start sm:justify-center pb-0'>
 			<CardHeader>
-				<CardTitle className='text-center'>{author.name}</CardTitle>
+				<CardTitle className='flex w-full p-4 relative'>
+					<div className='flex mx-auto w-1/2 items-center gap-4 justify-center'>
+						<p className='text-center'>{author.name}</p>
+					</div>
+					<div className='flex items-center absolute right-0 top-1/2 -translate-y-1/2'>
+						<RawDataDialog data={author} tooltip='Raw author data' />
+					</div>
+				</CardTitle>
 				<CardDescription className='text-center text-current'>{author.description}</CardDescription>
 				<div className='text-justify'>{author.bio}</div>
 			</CardHeader>
@@ -148,39 +142,9 @@ export default function AuthorCard({ author }: { author: Author }) {
 									</TableBody>
 								</Table>
 							</div>
-							<div className='flex items-center justify-end gap-4 pt-4'>
+							<div className='flex items-center justify-between gap-4 pt-4'>
+								<RawDataDialog data={quotesData} tooltip='Raw quotes data' />
 								<DataTablePagination table={table} limitConfiguration={[10, 25, 50, 100]} />
-							</div>
-							<div className='flex justify-end px-4 pt-4 pb-0'>
-								<Dialog>
-									<DialogTrigger className='cursor-pointer'>Raw data</DialogTrigger>
-									<DialogContent
-										className='bg-black/15 backdrop-blur-xl drop-shadow-md overflow-auto max-h-screen min-w-screen lg:max-h-3/4 lg:min-w-3/4 p-0 border-0'
-										overlayClassName='bg-black/25 backdrop-blur-xl'
-										closeButtonClassName='block lg:hidden text-white'
-									>
-										<VisuallyHidden>
-											<DialogHeader>
-												<DialogTitle></DialogTitle>
-												<DialogDescription></DialogDescription>
-											</DialogHeader>
-										</VisuallyHidden>
-										<SyntaxHighlighter
-											language='json'
-											wrapLongLines={true}
-											showLineNumbers={true}
-											style={atomOneDarkReasonable}
-											customStyle={{
-												fontSize: '14px',
-												backgroundColor: 'rgba(0, 0, 0, 0.5)',
-												borderRadius: '10px',
-												padding: '10px',
-											}}
-										>
-											{JSON.stringify(quotesData, null, 2)}
-										</SyntaxHighlighter>
-									</DialogContent>
-								</Dialog>
 							</div>
 						</AccordionContent>
 					</AccordionItem>
