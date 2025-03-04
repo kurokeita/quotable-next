@@ -111,7 +111,7 @@ export default function AuthorCard({ author }: { author: Author }) {
 			<CardHeader>
 				<CardTitle className='flex w-full p-4 relative'>
 					<div className='flex mx-auto w-1/2 items-center gap-4 justify-center'>
-						<p className='text-center'>{author.name}</p>
+						<p className='text-center text-2xl'>{author.name}</p>
 					</div>
 					<div className='flex items-center absolute right-0 top-1/2 -translate-y-1/2'>
 						<RawDataDialog data={author} tooltip='Raw author data' />
@@ -133,7 +133,7 @@ export default function AuthorCard({ author }: { author: Author }) {
 										{table.getRowModel().rows.map((row) => (
 											<TableRow key={row.id} className='flex w-full'>
 												{row.getVisibleCells().map((cell) => (
-													<TableCell key={cell.id} className='text-justify'>
+													<TableCell key={cell.id} className='text-justify text-lg font-bold italic font-mono'>
 														{flexRender(cell.column.columnDef.cell, cell.getContext())}
 													</TableCell>
 												))}
