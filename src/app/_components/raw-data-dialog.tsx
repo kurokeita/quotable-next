@@ -55,6 +55,8 @@ export default function RawDataDialog<T>({ data, tooltip }: { data: T; tooltip?:
 					</DialogHeader>
 				</VisuallyHidden>
 				<div className='flex flex-col overflow-auto'>
+					{/* Workaround for preventing triggering tooltip on opening the dialog */}
+					<input className='size-0' name='disable-tooltip-focus' />
 					<div className='flex justify-start bg-black/50 p-2 lg:p-4'>
 						<TooltipProvider>
 							<Tooltip>
