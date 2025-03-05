@@ -1,5 +1,6 @@
 import Footer from '@/app/_components/footer'
 import Header from '@/app/_components/header'
+import CanvasCursor from '@/components/ui/canvas-cursor'
 import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
 import { Roboto_Flex, Roboto_Mono } from 'next/font/google'
@@ -28,6 +29,7 @@ export default function RootLayout({
 			<body
 				className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full min-h-screen flex flex-col text-black`}
 			>
+				<CanvasCursor />
 				<div className='fixed inset-0 bg-[url(/assets/background.jpg)] bg-cover bg-center bg-fixed bg-no-repeat bg-black/70 bg-blend-hard-light z-0' />
 				<Header />
 				{children}

@@ -25,6 +25,7 @@
     "@tanstack/react-table": "^8.21.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.4.10",
     "hamburger-react": "^2.5.2",
     "lucide-react": "^0.476.0",
     "next": "15.1.7",
