@@ -40,18 +40,17 @@ export default function QuoteCard() {
 	const fetchQuote = useCallback(
 		async function () {
 			setQuote(undefined)
-			setTimeout(async () => {
-				const { author, query } = form.watch()
-				setAuthorAccordion('')
 
-				try {
-					const res = await randomQuote({ author, query })
-					setQuote(res)
-				} catch {
-					errorToast('Failed to fetch quote')
-					setQuote(undefined)
-				}
-			}, 500)
+			const { author, query } = form.watch()
+			setAuthorAccordion('')
+
+			try {
+				const res = await randomQuote({ author, query })
+				setQuote(res)
+			} catch {
+				errorToast('Failed to fetch quote')
+				setQuote(undefined)
+			}
 		},
 		[form],
 	)
@@ -158,7 +157,7 @@ export default function QuoteCard() {
 							<AccordionContent className='pb-0'>
 								<Accordion type='single' collapsible>
 									<AccordionItem value='author-bio'>
-										<div className='flex w-full justify-between'>
+										<div className='flex flex-col sm:flex-row w-full justify-between'>
 											<div className='flex items-center'>
 												<p>{quote.author.description}</p>
 											</div>
@@ -166,17 +165,19 @@ export default function QuoteCard() {
 												{isBioShown ? 'Less' : 'More'}
 											</AccordionTrigger>
 										</div>
-										<AccordionContent className='pb-0'>
+										<AccordionContent className='flex flex-col gap-4 pb-0'>
 											<div className='w-full'>
 												<p>{quote.author.bio}</p>
 											</div>
-											<div className='w-full'>
-												<a href={quote.author.link} className='underline'>
-													{quote.author.link}
-												</a>
-											</div>
-											<div className='flex justify-end'>
-												<RawDataDialog data={quote} tooltip='Raw quote data' />
+											<div className='flex flex-col sm:flex-row w-full py-2 sm:relative'>
+												<div className='w-full'>
+													<a href={quote.author.link} className='underline'>
+														{quote.author.link}
+													</a>
+												</div>
+												<div className='flex items-center justify-center sm:justify-start sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2'>
+													<RawDataDialog data={quote} tooltip='Raw quote data' />
+												</div>
 											</div>
 										</AccordionContent>
 									</AccordionItem>
