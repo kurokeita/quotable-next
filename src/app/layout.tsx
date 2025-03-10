@@ -15,7 +15,7 @@ const robotoMono = Roboto_Mono({
 })
 
 export const metadata: Metadata = {
-	title: 'Quotable UI',
+	title: 'Quotable',
 	description: 'A demo for the Quotble API (https://api.quotable.kurokeita.dev)',
 }
 
@@ -26,6 +26,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' className='dark'>
+			<head>
+				<link rel='icon' href='/icon?<generated>' type='image/png' sizes='32x32' />
+			</head>
 			<body
 				className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full min-h-screen flex flex-col text-black`}
 			>
