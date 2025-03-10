@@ -18,6 +18,9 @@ export default function Footer() {
 					</p>
 				</div>
 				<div className='flex items-center'>
+					<Link href='https://api.quotable.kurokeita.dev' className='underline text-xs' target='_blank'>
+						API Doc
+					</Link>
 					<p className='text-xs p-2'>
 						<span>@ 2024 Quotable</span>
 					</p>
