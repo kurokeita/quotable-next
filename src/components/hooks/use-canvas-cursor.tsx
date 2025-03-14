@@ -189,7 +189,10 @@ const useCanvasCursor = () => {
 
 	const renderCanvas = function () {
 		const canvas = document.getElementById('canvas') as HTMLCanvasElement
-		ctx = canvas.getContext('2d') as CanvasRenderingContext2D & { running: boolean; frame: number }
+		ctx = canvas.getContext('2d') as CanvasRenderingContext2D & {
+			running: boolean
+			frame: number
+		}
 		ctx.running = true
 		ctx.frame = 1
 		f = new Wave({

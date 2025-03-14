@@ -11,11 +11,11 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { DataTablePagination, Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import {
 	ColumnDef,
+	PaginationState,
+	Updater,
 	flexRender,
 	getCoreRowModel,
 	getPaginationRowModel,
-	PaginationState,
-	Updater,
 	useReactTable,
 } from '@tanstack/react-table'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -87,11 +87,21 @@ export default function AuthorCard({ author }: { author: Author }) {
 	})
 
 	const fetchData = useCallback(
-		async ({ page, pageSize }: { page: number; pageSize: 10 | 25 | 50 | 100 }) => {
+		async ({
+			page,
+			pageSize,
+		}: {
+			page: number
+			pageSize: 10 | 25 | 50 | 100
+		}) => {
 			setIsLoading(true)
 
 			try {
-				const res = await fetchQuotes({ limit: pageSize, page, author: author.name })
+				const res = await fetchQuotes({
+					limit: pageSize,
+					page,
+					author: author.name,
+				})
 				setQuotesData(res)
 			} catch {
 				errorToast('Failed to fetch quotes')

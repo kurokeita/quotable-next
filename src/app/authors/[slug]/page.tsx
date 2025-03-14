@@ -1,7 +1,11 @@
 import { getAuthorBySlug } from '@/common/utils/api'
 import AuthorCard from './_components/author-card'
 
-export default async function AuthorDetails({ params }: { params: Promise<{ slug: string }> }) {
+export default async function AuthorDetails({
+	params,
+}: {
+	params: Promise<{ slug: string }>
+}) {
 	const slug = (await params).slug
 	const author = await getAuthorBySlug(slug)
 

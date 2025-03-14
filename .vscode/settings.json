@@ -1,29 +1,38 @@
 {
-    "editor.formatOnSave": true,
-    "[javascript]": {
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "javascript.format.semicolons": "remove",
-    "typescript.format.semicolons": "remove",
-    "[typescript]": {
-        "editor.formatOnSave": true,
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[typescriptreact]": {
-        "editor.formatOnSave": true,
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": "always",
-        "source.fixAll.eslint": "always"
-    },
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-    ]
+	"editor.formatOnSave": true,
+	"javascript.format.semicolons": "remove",
+	"typescript.format.semicolons": "remove",
+	"editor.codeActionsOnSave": {
+		"source.organizeImports.biome": "explicit",
+		"source.fixAll.biome": "explicit"
+	},
+	"[javascript]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[jsonc]": {
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[css]": {
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.defaultFormatter": "biomejs.biome"
+	}
 }
