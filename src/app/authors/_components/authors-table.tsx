@@ -21,13 +21,13 @@ import { cn } from '@/lib/utils'
 import {
 	Column,
 	ColumnDef,
+	PaginationState,
+	SortingState,
+	Updater,
 	flexRender,
 	getCoreRowModel,
 	getPaginationRowModel,
 	getSortedRowModel,
-	PaginationState,
-	SortingState,
-	Updater,
 	useReactTable,
 } from '@tanstack/react-table'
 import Link from 'next/link'

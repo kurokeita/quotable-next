@@ -16,7 +16,13 @@ import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/esm/styles/
 
 SyntaxHighlighter.registerLanguage('json', json)
 
-export default function RawDataDialog<T>({ data, tooltip }: { data: T; tooltip?: string }) {
+export default function RawDataDialog<T>({
+	data,
+	tooltip,
+}: {
+	data: T
+	tooltip?: string
+}) {
 	const [isCopied, setIsCopied] = useState(false)
 
 	const copyToClipboard = () => {

@@ -83,7 +83,6 @@ function DataTablePagination<TData>({
 	limitConfiguration = [10, 20, 30, 40, 50],
 }: DataTablePaginationProps<TData>) {
 	const [pageIndex, setPageIndex] = React.useState<number>(table.getState().pagination.pageIndex ?? 0 + 1)
-	const currentPage = table.getState().pagination.pageIndex
 
 	const handlePageChange = (e: React.FormEvent) => {
 		e.preventDefault()
@@ -96,7 +95,7 @@ function DataTablePagination<TData>({
 
 	React.useEffect(() => {
 		setPageIndex(table.getState().pagination.pageIndex + 1)
-	}, [table, currentPage])
+	}, [table])
 
 	return (
 		<div className='flex grow sm:grow-none items-center px-4 justify-end'>
