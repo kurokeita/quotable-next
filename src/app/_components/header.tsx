@@ -31,7 +31,7 @@ export default function Header() {
 		return equal ? 'underline font-bold text-xl' : 'text-base'
 	}
 	return (
-		<div className='z-10 w-full bg-black/15 backdrop-blur-xl drop-shadow-md border-transparent text-current'>
+		<div className='z-10 w-full blur-background'>
 			{/* Header for screen with width >= 640px (40rem) */}
 			<div className='hidden sm:flex sm:flex-col'>
 				<div className='flex w-full p-4 relative'>
@@ -41,7 +41,7 @@ export default function Header() {
 					</div>
 					<div className='flex items-center absolute right-4 top-1/2 -translate-y-1/2'>
 						<Link href='https://github.com/kurokeita/quotable-next' className='no-underline' target='_blank'>
-							<GitHubIcon width={30} height={30} />
+							<GitHubIcon width={30} height={30} className='fill-white' />
 						</Link>
 					</div>
 				</div>
@@ -78,7 +78,7 @@ export default function Header() {
 							<DrawerTrigger>
 								<Sling size={30} toggled={isDrawerOpen} />
 							</DrawerTrigger>
-							<DrawerContent className='bg-black backdrop-blur-xl drop-shadow-md border-transparent text-white flex flex-col'>
+							<DrawerContent className='blur-background flex flex-col'>
 								<VisuallyHidden>
 									<DrawerHeader>
 										<DrawerTitle></DrawerTitle>
@@ -115,7 +115,7 @@ export default function Header() {
 					</div>
 					<div className='flex items-center'>
 						<Link href='https://github.com/kurokeita/quotable-next' className='no-underline' target='_blank'>
-							<GitHubIcon width={30} height={30} />
+							<GitHubIcon width={30} height={30} className='fill-white' />
 						</Link>
 					</div>
 				</div>

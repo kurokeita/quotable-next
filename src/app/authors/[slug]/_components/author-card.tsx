@@ -117,7 +117,7 @@ export default function AuthorCard({ author }: { author: Author }) {
 	}, [fetchData, page, pageSize])
 
 	return (
-		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full grow sm:grow-0 border-transparent text-current max-w-screen rounded-none sm:rounded-md flex justify-start sm:justify-center pb-0'>
+		<Card className='blur-background w-full grow sm:grow-0 max-w-screen rounded-none sm:rounded-md flex justify-start sm:justify-center pb-0'>
 			<CardHeader>
 				<CardTitle className='flex w-full p-4 relative'>
 					<div className='flex mx-auto w-1/2 items-center gap-4 justify-center'>

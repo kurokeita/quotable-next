@@ -202,37 +202,5 @@
 			"onmessageerror",
 			"onmousewheel"
 		]
-	},
-	"overrides": [
-		{
-			"include": ["*.jsx", "*.tsx", "*.js", "*.ts"]
-		},
-		{
-			"include": ["*.css"]
-		},
-		{
-			"include": ["*.html"]
-		},
-		{
-			"include": ["*.svg"]
-		},
-		{
-			"include": ["*.yml", "*.yaml"]
-		},
-		{
-			"include": ["*.jsx", "*.tsx", "*.js", "*.ts"]
-		},
-		{
-			"include": ["*.css"]
-		},
-		{
-			"include": ["*.html"]
-		},
-		{
-			"include": ["*.svg"]
-		},
-		{
-			"include": ["*.yml", "*.yaml"]
-		}
-	]
+	}
 }

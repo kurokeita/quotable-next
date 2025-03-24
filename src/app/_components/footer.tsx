@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Footer() {
 	return (
-		<footer className='z-10 w-full bg-black/15 backdrop-blur-xl drop-shadow-md border-transparent text-current'>
+		<footer className='z-10 w-full blur-background'>
 			<div className='flex justify-between'>
 				<div className='flex items-center'>
 					<p className='text-xs p-2'>

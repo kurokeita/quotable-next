@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
 import { Roboto_Flex, Roboto_Mono } from 'next/font/google'
 import './globals.css'
+import { Ripple } from '@/components/ui/ripple'
 
 const robotoFlex = Roboto_Flex({
 	subsets: ['latin'],
@@ -33,7 +34,11 @@ export default function RootLayout({
 				className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full min-h-screen flex flex-col text-black`}
 			>
 				<CanvasCursor />
-				<div className='fixed inset-0 bg-[url(/assets/background.jpg)] bg-cover bg-center bg-fixed bg-no-repeat bg-black/70 bg-blend-hard-light z-0' />
+				<Ripple
+					mainCircleOpacity={0.5}
+					numCircles={12}
+					className='fixed z-0 h-full w-full flex-col items-center justify-center overflow-hidden bg-background'
+				/>
 				<Header />
 				{children}
 				<Toaster position='top-right' closeButton richColors theme='dark' />

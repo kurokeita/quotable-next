@@ -50,7 +50,7 @@ export default function RawDataDialog<T>({
 				</TooltipProvider>
 			</DialogTrigger>
 			<DialogContent
-				className='bg-black/15 backdrop-blur-xl drop-shadow-md overflow-auto max-h-screen min-w-screen lg:max-h-3/4 lg:min-w-3/4 p-0 border-0'
+				className='blur-background overflow-auto max-h-screen min-w-screen lg:max-h-3/4 lg:min-w-3/4 p-0 border-0'
 				overlayClassName='bg-black/25 backdrop-blur-xl'
 				closeButtonClassName='block lg:hidden text-white'
 			>
@@ -63,7 +63,7 @@ export default function RawDataDialog<T>({
 				<div className='flex flex-col overflow-auto'>
 					{/* Workaround for preventing triggering tooltip on opening the dialog */}
 					<input className='size-0' name='disable-tooltip-focus' />
-					<div className='flex justify-start bg-black/50 p-2 lg:p-4'>
+					<div className='flex justify-start blur-color p-2 lg:p-4'>
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger asChild>
@@ -89,7 +89,7 @@ export default function RawDataDialog<T>({
 						style={atomOneDarkReasonable}
 						customStyle={{
 							fontSize: '14px',
-							backgroundColor: 'rgba(0, 0, 0, 0.5)',
+							backgroundColor: 'var(--blur-color)',
 							padding: '10px',
 						}}
 					>
