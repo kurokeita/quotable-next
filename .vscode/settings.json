@@ -34,5 +34,15 @@
 		"editor.formatOnSave": true,
 		"editor.tabSize": 2,
 		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[yaml]": {
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[yml]": {
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.defaultFormatter": "biomejs.biome"
 	}
 }
