@@ -5,8 +5,8 @@ import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
 import { Roboto_Flex, Roboto_Mono } from 'next/font/google'
 import './globals.css'
-import { healthCheck } from '@/common/utils/api'
 import { Ripple } from '@/components/ui/ripple'
+import ApiHealthCheckWrapper from './api-health-check-wrapper'
 
 const robotoFlex = Roboto_Flex({
 	subsets: ['latin'],
@@ -21,13 +21,11 @@ export const metadata: Metadata = {
 	description: 'A demo for the Quotble API (https://api.quotable.kurokeita.dev)',
 }
 
-export default async function RootLayout({
+export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	await healthCheck()
-
 	return (
 		<html lang='en' className='dark'>
 			<head>
@@ -43,7 +41,7 @@ export default async function RootLayout({
 					className='fixed z-0 h-full w-full flex-col items-center justify-center overflow-hidden bg-background'
 				/>
 				<Header />
-				{children}
+				<ApiHealthCheckWrapper>{children}</ApiHealthCheckWrapper>
 				<Toaster position='top-right' closeButton richColors theme='dark' />
 				<Footer />
 			</body>

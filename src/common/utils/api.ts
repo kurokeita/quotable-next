@@ -4,16 +4,20 @@ import { FetchAuthorsResponse, FetchQuotesResponse } from '@/common/types/respon
 import config from '@/config'
 
 export async function healthCheck() {
-	const response = await fetch(`${config.quotableApiUrl}/health`)
+	try {
+		const response = await fetch(`${config.quotableApiUrl}/health`)
 
-	if (response.status !== 200) {
-		throw new Error('Quotable API is not responding')
-	}
+		if (!response.ok) {
+			throw new Error()
+		}
 
-	const json = await response.json()
+		const json = await response.json()
 
-	if (json.status !== 'ok') {
-		throw new Error('Quotable API is not responding')
+		if (json.status !== 'ok') {
+			throw new Error()
+		}
+	} catch {
+		throw new Error('Failed to reach Quotable API.')
 	}
 }
 
