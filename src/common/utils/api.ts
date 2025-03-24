@@ -3,11 +3,18 @@ import { FetchAuthorsRequest, FetchQuotesRequest, RandomQuoteRequest } from '@/c
 import { FetchAuthorsResponse, FetchQuotesResponse } from '@/common/types/response'
 import config from '@/config'
 
-export async function healthCheck(): Promise<boolean> {
+export async function healthCheck() {
 	const response = await fetch(`${config.quotableApiUrl}/health`)
+
+	if (response.status !== 200) {
+		throw new Error('Quotable API is not responding')
+	}
+
 	const json = await response.json()
 
-	return json.status === 'ok'
+	if (json.status !== 'ok') {
+		throw new Error('Quotable API is not responding')
+	}
 }
 
 export async function randomQuote(request: RandomQuoteRequest): Promise<Quote | undefined> {

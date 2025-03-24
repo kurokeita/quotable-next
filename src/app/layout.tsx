@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
 import { Roboto_Flex, Roboto_Mono } from 'next/font/google'
 import './globals.css'
+import { healthCheck } from '@/common/utils/api'
 import { Ripple } from '@/components/ui/ripple'
 
 const robotoFlex = Roboto_Flex({
@@ -20,18 +21,20 @@ export const metadata: Metadata = {
 	description: 'A demo for the Quotble API (https://api.quotable.kurokeita.dev)',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	await healthCheck()
+
 	return (
 		<html lang='en' className='dark'>
 			<head>
 				<link rel='icon' href='/icon?<generated>' type='image/png' sizes='32x32' />
 			</head>
 			<body
-				className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full min-h-screen flex flex-col text-black`}
+				className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full min-h-screen flex flex-col text-white`}
 			>
 				<CanvasCursor />
 				<Ripple
