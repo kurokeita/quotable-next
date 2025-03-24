@@ -127,7 +127,13 @@ export default function QuoteCard() {
 						</AccordionContent>
 					</AccordionItem>
 				</Accordion>
-				{!quote && <Skeleton className='w-full h-[20px] rounded-full' />}
+				{!quote && (
+					<div className='flex flex-col gap-4'>
+						<Skeleton className='w-full h-[20px] rounded-full' />
+						<Skeleton className='w-full h-[20px] rounded-full' />
+						<Skeleton className='w-full h-[20px] rounded-full' />
+					</div>
+				)}
 				{quote && (
 					<div className='w-full'>
 						<p className='text-center text-2xl font-bold italic font-mono'>{quote?.content}</p>
@@ -136,9 +142,9 @@ export default function QuoteCard() {
 			</CardContent>
 			<CardFooter className='pb-0'>
 				{!quote && (
-					<div className='flex flex-col gap-4 w-full'>
-						<Skeleton className='w-full h-[20px] rounded-full' />
+					<div className='flex justify-between gap-4 w-full'>
 						<Actions fetchHandler={handleFilter} filterHandler={toggleFilter} />
+						<Skeleton className='w-full h-[20px] rounded-full' />
 					</div>
 				)}
 				{quote && (
@@ -152,7 +158,16 @@ export default function QuoteCard() {
 						<AccordionItem value='author-name'>
 							<div className='flex w-full justify-between'>
 								<Actions fetchHandler={handleFilter} filterHandler={toggleFilter} />
-								<AccordionTrigger className='justify-end [&>svg]:hidden'>{quote.author.name}</AccordionTrigger>
+								<TooltipProvider>
+									<Tooltip>
+										<TooltipTrigger className='bg-transparent shadow-none hover:bg-transparent' asChild>
+											<AccordionTrigger className='justify-end [&>svg]:hidden'>{quote.author.name}</AccordionTrigger>
+										</TooltipTrigger>
+										<TooltipContent>
+											<p>Description</p>
+										</TooltipContent>
+									</Tooltip>
+								</TooltipProvider>
 							</div>
 							<AccordionContent className='pb-0'>
 								<Accordion type='single' collapsible>
@@ -200,17 +215,17 @@ function Actions({
 }) {
 	return (
 		<div className='flex gap-4'>
-			<TooltipProvider delayDuration={300}>
+			<TooltipProvider>
 				<Tooltip>
-					<TooltipTrigger className='bg-transparent shadow-none hover:bg-transparent ' onClick={fetchHandler}>
-						<RefreshCw size={20} className='hover:animate-spin' />
+					<TooltipTrigger className='bg-transparent shadow-none hover:bg-transparent group' onClick={fetchHandler}>
+						<RefreshCw size={20} className='group-hover:animate-spin' />
 					</TooltipTrigger>
 					<TooltipContent>
 						<p>Fetch new quote</p>
 					</TooltipContent>
 				</Tooltip>
 			</TooltipProvider>
-			<TooltipProvider delayDuration={300}>
+			<TooltipProvider>
 				<Tooltip>
 					<TooltipTrigger className='bg-transparent shadow-none hover:bg-transparent' onClick={filterHandler}>
 						<Filter size={20} />
