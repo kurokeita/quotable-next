@@ -77,7 +77,7 @@ export default function QuoteCard() {
 	}, [fetchQuote])
 
 	return (
-		<Card className='bg-black/15 backdrop-blur-xl drop-shadow-md w-full grow sm:grow-0 border-transparent text-current max-w-screen rounded-none sm:rounded-md flex justify-center'>
+		<Card className='blur-background w-full grow sm:grow-0 max-w-screen rounded-none sm:rounded-md flex justify-center'>
 			<CardContent className='flex flex-col justify-center gap-4'>
 				<Accordion type='single' className='w-full pb-0' value={isFilterShown ? 'filter' : ''}>
 					<AccordionItem value='filter'>

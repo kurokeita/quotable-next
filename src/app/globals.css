@@ -45,6 +45,7 @@
 
 	--animate-accordion-down: accordion-down 0.2s ease-out;
 	--animate-accordion-up: accordion-up 0.2s ease-out;
+	--animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s) infinite;
 
 	@keyframes accordion-down {
 		from {
@@ -60,6 +61,15 @@
 		}
 		to {
 			height: 0;
+		}
+	}
+	@keyframes ripple {
+		0%,
+		100% {
+			transform: translate(-50%, -50%) scale(1);
+		}
+		50% {
+			transform: translate(-50%, -50%) scale(0.9);
 		}
 	}
 }
@@ -84,19 +94,22 @@
 
 @layer utilities {
 	@media (prefers-color-scheme: dark) {
-		/* body {
-		background-blend-mode: hard-light;
-		background-color: rgba(0, 0, 0, 0.7);
-	} */
 	}
 
 	body {
-		/* background-image: url('/assets/background.jpg');
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	background-repeat: no-repeat; */
 		min-height: 100vh;
+	}
+
+	.blur-color {
+		background-color: var(--blur-color);
+	}
+
+	.blur-background {
+		background-color: var(--blur-color);
+		backdrop-filter: blur(24px);
+		box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+		color: white;
+		border-color: transparent;
 	}
 }
 
@@ -168,6 +181,8 @@
 	--chart-5: hsl(27 87% 67%);
 
 	--radius: 0.5rem;
+
+	--blur-color: color-mix(in oklab, var(--color-neutral-600) 15%, transparent);
 }
 .dark {
 	--background: hsl(240 10% 3.9%);
