@@ -2,17 +2,26 @@ name: Code quality
 
 on:
   push:
+    branches: ["main"]
+    tags: ["v*.*.*"]
   pull_request:
+    branches: ["main"]
 
 jobs:
-  quality:
+  biomejs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Setup Biome
         uses: biomejs/setup-biome@v2
         with:
           version: latest
+
       - name: Run Biome
         run: biome ci .
