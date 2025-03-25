@@ -44,5 +44,15 @@
 		"editor.formatOnSave": true,
 		"editor.tabSize": 2,
 		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/.next": true,
+		"**/.vercel": true
 	}
 }

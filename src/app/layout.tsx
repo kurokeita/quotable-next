@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import { Roboto_Flex, Roboto_Mono } from 'next/font/google'
 import './globals.css'
 import { Ripple } from '@/components/ui/ripple'
+import ApiHealthCheckWrapper from './api-health-check-wrapper'
 
 const robotoFlex = Roboto_Flex({
 	subsets: ['latin'],
@@ -31,7 +32,7 @@ export default function RootLayout({
 				<link rel='icon' href='/icon?<generated>' type='image/png' sizes='32x32' />
 			</head>
 			<body
-				className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full min-h-screen flex flex-col text-black`}
+				className={`${robotoFlex.className} ${robotoMono.className} min-w-fit w-full min-h-screen flex flex-col text-white`}
 			>
 				<CanvasCursor />
 				<Ripple
@@ -40,7 +41,7 @@ export default function RootLayout({
 					className='fixed z-0 h-full w-full flex-col items-center justify-center overflow-hidden bg-background'
 				/>
 				<Header />
-				{children}
+				<ApiHealthCheckWrapper>{children}</ApiHealthCheckWrapper>
 				<Toaster position='top-right' closeButton richColors theme='dark' />
 				<Footer />
 			</body>
