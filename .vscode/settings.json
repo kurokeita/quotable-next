@@ -54,5 +54,7 @@
 		"**/Thumbs.db": true,
 		"**/.next": true,
 		"**/.vercel": true
-	}
+	},
+	"IDX.aI.enableInlineCompletion": true,
+	"IDX.aI.enableCodebaseIndexing": true
 }
