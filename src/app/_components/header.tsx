@@ -49,22 +49,24 @@ export default function Header() {
 					<NavigationMenu>
 						<NavigationMenuList>
 							<NavigationMenuItem>
-								<Link href='/' legacyBehavior passHref prefetch={true}>
-									<NavigationMenuLink
-										className={`hover:bg-transparent focus:bg-transparent focus:text-current ${linkStyles('/')}`}
-									>
+								<NavigationMenuLink
+									asChild
+									className={`hover:bg-transparent focus:bg-transparent focus:text-current ${linkStyles('/')}`}
+								>
+									<Link href='/' prefetch={true}>
 										Home
-									</NavigationMenuLink>
-								</Link>
+									</Link>
+								</NavigationMenuLink>
 							</NavigationMenuItem>
 							<NavigationMenuItem>
-								<Link href='/authors' legacyBehavior passHref prefetch={true}>
-									<NavigationMenuLink
-										className={`hover:bg-transparent focus:bg-transparent focus:text-current ${linkStyles('/authors')}`}
-									>
+								<NavigationMenuLink
+									asChild
+									className={`hover:bg-transparent focus:bg-transparent focus:text-current ${linkStyles('/authors')}`}
+								>
+									<Link href='/authors' prefetch={true}>
 										Authors
-									</NavigationMenuLink>
-								</Link>
+									</Link>
+								</NavigationMenuLink>
 							</NavigationMenuItem>
 						</NavigationMenuList>
 					</NavigationMenu>
@@ -88,22 +90,24 @@ export default function Header() {
 								<NavigationMenu className='flex flex-col gap-4 min-w-full'>
 									<NavigationMenuList className='flex flex-col gap-4 w-full'>
 										<NavigationMenuItem onClick={() => setIsDrawerOpen(false)}>
-											<Link href='/' legacyBehavior passHref prefetch={true}>
-												<NavigationMenuLink
-													className={`hover:bg-transparent focus:bg-transparent focus:text-current text-center ${linkStyles('/')}`}
-												>
+											<NavigationMenuLink
+												asChild
+												className={`hover:bg-transparent focus:bg-transparent focus:text-current text-center ${linkStyles('/')}`}
+											>
+												<Link href='/' prefetch={true}>
 													Home
-												</NavigationMenuLink>
-											</Link>
+												</Link>
+											</NavigationMenuLink>
 										</NavigationMenuItem>
 										<NavigationMenuItem onClick={() => setIsDrawerOpen(false)}>
-											<Link href='/authors' legacyBehavior passHref prefetch={true}>
-												<NavigationMenuLink
-													className={`hover:bg-transparent focus:bg-transparent focus:text-current ${linkStyles('/authors')}`}
-												>
+											<NavigationMenuLink
+												asChild
+												className={`hover:bg-transparent focus:bg-transparent focus:text-current ${linkStyles('/authors')}`}
+											>
+												<Link href='/authors' prefetch={true}>
 													Authors
-												</NavigationMenuLink>
-											</Link>
+												</Link>
+											</NavigationMenuLink>
 										</NavigationMenuItem>
 									</NavigationMenuList>
 								</NavigationMenu>

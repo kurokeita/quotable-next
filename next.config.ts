@@ -10,14 +10,11 @@ const nextConfig: NextConfig = {
 
 		return config
 	},
-	// Configure Turbopack for SVG imports
-	experimental: {
-		turbo: {
-			rules: {
-				'*.svg': {
-					loaders: ['@svgr/webpack'],
-					as: 'react',
-				},
+	turbopack: {
+		rules: {
+			'*.svg': {
+				loaders: ['@svgr/webpack'],
+				as: '*.js',
 			},
 		},
 	},
